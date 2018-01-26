@@ -21,9 +21,9 @@ func handleRedirectURL(ctx *Context, rw http.ResponseWriter, r *http.Request) (i
 		return showKeyNotFound(targetKey, rw)
 	}
 	rw.Header().Add("Cache-Control","no-store, no-cache, must-revalidate")
-	http.Redirect(rw, r, url, http.StatusMovedPermanently)
+	http.Redirect(rw, r, url, http.StatusFound)
 	log.Println("Redirect to:", url)
-	return http.StatusMovedPermanently, nil
+	return http.StatusFound, nil
 }
 
 func showKeyNotFound(key string, rw http.ResponseWriter) (int, error) {
